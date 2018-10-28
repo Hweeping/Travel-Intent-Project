@@ -1,0 +1,36 @@
+import json
+import urllib
+from urlparse import urlparse
+
+import httplib2 as http
+
+if __name__=="__main__":
+
+    #Authentication Parameters
+    headers = {'AccountKey' : 'J61F3dLvReigOAVRxxEysA==',
+                'accept' : 'application/json'}
+
+    url = "http://datamall2.mytransport.sg/"
+    path = "/ltaodataservice/BusArrivalv2?"
+    para = "BusStopCode=83139"
+    para1 = "&Services=15"
+
+    target = urlparse(url + path + para + para1)
+    print target.geturl()
+    method = 'GET'
+    body = ''
+
+    h = http.Http()
+
+    response, content = h.request(
+        target.geturl(),
+        method,
+        body,
+        headers)
+
+    jsonObj = json.loads(content)
+    print json.dumps(jsonObj, sort_keys=True, indent=4)
+
+    with open(para, "w") as outfile:
+        json.dump(jsonObj, outfile, sort_keys=True, indent=4,
+ensure_ascii=False)
