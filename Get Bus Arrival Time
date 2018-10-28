@@ -11,6 +11,8 @@ if __name__=="__main__":
                 'accept' : 'application/json'}
 
     url = "http://datamall2.mytransport.sg/"
+
+    print ("What data to ")    
     path = "/ltaodataservice/BusArrivalv2?"
     para = "BusStopCode=83139"
     para1 = "&Services=15"
